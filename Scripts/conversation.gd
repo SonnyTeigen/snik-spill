@@ -33,7 +33,7 @@ func start_convo():
 			background_music.play()
 			$Node/AnimatedSprite2D2.self_modulate.a = 0.5
 			$Node/AnimatedSprite2D.play("talking")
-			display(" Så jeg må finne denne kofferten du snakket om?")
+			display(" Så, jeg må finne denne kofferten du snakket om?")
 			clicks = 1
 			await animation_player.animation_finished
 	if Global.store_convo_played == false and Global.save_scene == "Store":
@@ -49,7 +49,7 @@ func start_convo():
 			background_music.play()
 			$Node/AnimatedSprite2D2.self_modulate.a = 0.5
 			$Node/AnimatedSprite2D.play("talking")
-			display(" filern! jeg ble fanget")
+			display(" Fillern! De har fanget meg!")
 			clicks = 1
 			await animation_player.animation_finished
 
@@ -57,7 +57,7 @@ func _on_Button_pressed():
 	if Global.save_scene == "World":
 		if clicks == 1:
 			swap_to_second_talker()
-			display2(" Ja, den inneholder det enneste viruset som kan stoppe AI'en")
+			display2(" Ja, den inneholder det eneste viruset som kan stoppe AI'en!")
 			clicks = 2
 			await animation_player.animation_finished
 		elif clicks == 2:
@@ -67,7 +67,7 @@ func _on_Button_pressed():
 			await animation_player.animation_finished
 		elif clicks == 3:
 			swap_to_second_talker()
-			display2(" Den skal være i stor buttik i nærheten, mest sannsynlig til venstre")
+			display2(" Den er lokalisert til en stor butikk i nærheten. Start med å bevege deg i vestlig retning, men pass deg for patruljerende vakter!")
 			clicks = 4
 		elif clicks == 4:
 			Global.world_convo_played = true
@@ -79,7 +79,7 @@ func _on_Button_pressed():
 	if Global.save_scene == "Store":
 		if clicks == 1:
 			swap_to_second_talker()
-			display2(" kofferten ligger på taket gå å hent den!")
+			display2(" Kofferten ligger på taket! Kan du finne en vei opp? For eksempel en stige?")
 			clicks = 2
 		elif clicks == 2: 
 			Global.store_convo_played = true
@@ -90,7 +90,7 @@ func _on_Button_pressed():
 	if Global.save_scene == "Jail":
 		if clicks == 1:
 			swap_to_second_talker()
-			display2(" Ta det med roo, du har en hackmaster 3000 på deg, du kan lett komme deg ut.")
+			display2(" Ta det med ro! Du har en hackmaster 3000 på deg, så du kan lett komme deg ut. Bare trykk på 'E' ved celledøra, og tast så inn koden. ")
 			clicks = 2
 		elif clicks == 2:
 			Global.jail_convo_played = true

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#Dette er siste versjon!
 # Eksporterer en variabel for å holde en referanse til en Path2D-node
 @export var patrol_path: Path2D
 @export var player: Node2D
@@ -266,6 +266,10 @@ func _on_body_entered_inner_vision_cone(body):
 		var result = get_world_2d().direct_space_state.intersect_ray(query_parameters)
 		if result and result.collider == player_ref:
 			change_state(States.CHASE)
+
+func _on_search_timeout():
+	if state == States.SUSPICIOUS:
+		change_state(States.PATROL_PATH)
 
 func _on_suspicious_timeout():
 	if state == States.SUSPICIOUS:

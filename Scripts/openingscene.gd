@@ -15,7 +15,7 @@ func play_intro():
 	if Global.intro_played == false:
 		$Node2D.visible = true
 		$Node2D/AnimationPlayer.play("fade_in")
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(6).timeout
 		$Node2D/AnimationPlayer.play("fade_out")
 		await get_tree().create_timer(3).timeout
 		$Node2D.visible = false

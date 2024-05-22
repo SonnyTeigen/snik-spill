@@ -11,8 +11,8 @@ var player_exit_jail_posx = 502
 var player_exit_jail_posy = 207
 var player_exit_roof_posx = 370
 var player_exit_roof_posy = 120
-var player_start_posx = 139
-var player_start_posy = 367
+var player_start_posx = 2567
+var player_start_posy = 261
 var player_start_jail_posx = 420
 var player_start_jail_posy = 330
 
