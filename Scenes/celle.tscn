@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://3i56yjiot6o"]
+
+[ext_resource type="Texture2D" uid="uid://bphnyvwavhrvs" path="res://Assets/bf565fd8-386b-4e94-bb1d-4eefacc4c1892.png" id="1_c8ocq"]
+
+[node name="Celle" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(29.25, 21)
+scale = Vector2(1.47561, 1.36207)
+texture = ExtResource("1_c8ocq")
+region_enabled = true
+region_rect = Rect2(29, 35, 123, 116)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(0, 100, -60, 100, -60, -60, 120, -60, 120, 100, 60, 100, 60, 60, 100, 60, 100, -10, 30, -10, -40, -10, -40, 60, 0, 60)

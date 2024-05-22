@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://byagbq3rr1qu2"]
+
+[ext_resource type="Texture2D" uid="uid://b70f5toirxoso" path="res://Assets/Koffert.png" id="1_b10if"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylwhy"]
+size = Vector2(26, 22)
+
+[node name="Case" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2.38419e-07)
+scale = Vector2(0.0723684, 0.0702381)
+texture = ExtResource("1_b10if")
+region_enabled = true
+region_rect = Rect2(725, 12, 380, 315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ylwhy")

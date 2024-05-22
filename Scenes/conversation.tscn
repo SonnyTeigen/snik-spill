@@ -1,0 +1,212 @@
+[gd_scene load_steps=21 format=3 uid="uid://d1ool2aaeo32n"]
+
+[ext_resource type="Script" path="res://Scripts/conversation.gd" id="1_6yc11"]
+[ext_resource type="Texture2D" uid="uid://cpjsxy2xcc8dc" path="res://Assets/Player/idle.png" id="1_us7pd"]
+[ext_resource type="Texture2D" uid="uid://d4l2pd8ogd4ls" path="res://Assets/Player/shadow_idle.png" id="2_xyqci"]
+[ext_resource type="AudioStream" uid="uid://d18awmfuurtby" path="res://Assets/Music/Snik Theme.mp3" id="4_75xyt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag3sd"]
+atlas = ExtResource("1_us7pd")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsel7"]
+atlas = ExtResource("1_us7pd")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3gal"]
+atlas = ExtResource("1_us7pd")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k7la"]
+atlas = ExtResource("1_us7pd")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wsd0"]
+atlas = ExtResource("1_us7pd")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjvm3"]
+atlas = ExtResource("1_us7pd")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5imnq"]
+atlas = ExtResource("1_us7pd")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eitnq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag3sd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsel7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3gal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k7la")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wsd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjvm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5imnq")
+}],
+"loop": true,
+"name": &"talking",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6dry"]
+atlas = ExtResource("2_xyqci")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f62tu"]
+atlas = ExtResource("2_xyqci")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeeln"]
+atlas = ExtResource("2_xyqci")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nikc"]
+atlas = ExtResource("2_xyqci")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gaeqy"]
+atlas = ExtResource("2_xyqci")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y50cy"]
+atlas = ExtResource("2_xyqci")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpwdj"]
+atlas = ExtResource("2_xyqci")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ts3k6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6dry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f62tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeeln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nikc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gaeqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y50cy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpwdj")
+}],
+"loop": true,
+"name": &"talking",
+"speed": 5.0
+}]
+
+[node name="Conversation" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6yc11")
+
+[node name="Node" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Node"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 860.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.184314, 0.184314, 0.184314, 0.54902)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node"]
+position = Vector2(200, 180)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_eitnq")
+animation = &"talking"
+frame_progress = 0.40383
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Node"]
+position = Vector2(655, 190)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_ts3k6")
+animation = &"talking"
+flip_h = true
+
+[node name="ColorRect2" type="ColorRect" parent="Node"]
+offset_top = 250.0
+offset_right = 400.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0.788235)
+
+[node name="Panel" type="Panel" parent="Node/ColorRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.652
+offset_bottom = 0.0399933
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node/ColorRect2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
+[node name="ColorRect3" type="ColorRect" parent="Node"]
+offset_left = 450.0
+offset_top = 250.0
+offset_right = 860.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0.788235)
+
+[node name="Panel" type="Panel" parent="Node/ColorRect3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.652
+offset_bottom = 0.0399933
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node/ColorRect3/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -190.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node"]
+root_node = NodePath("../..")
+
+[node name="Button" type="Button" parent="Node"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 860.0
+offset_bottom = 490.0
+
+[node name="ConvoMusic" type="AudioStreamPlayer2D" parent="." groups=["sound"]]
+stream = ExtResource("4_75xyt")
+
+[connection signal="pressed" from="Node/Button" to="." method="_on_Button_pressed"]

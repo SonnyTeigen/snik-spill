@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://cng66j1fcgk77"]
+
+[ext_resource type="Script" path="res://Scripts/openingscene.gd" id="1_q662r"]
+
+[sub_resource type="Animation" id="Animation_mnp3y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bcgm4"]
+resource_name = "fade_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_via7f"]
+resource_name = "fade_out"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_38qxc"]
+resource_name = "full_fade"
+length = 6.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p7cog"]
+_data = {
+"RESET": SubResource("Animation_mnp3y"),
+"fade_in": SubResource("Animation_bcgm4"),
+"fade_out": SubResource("Animation_via7f"),
+"full_fade": SubResource("Animation_38qxc")
+}
+
+[node name="intro" type="Node2D"]
+script = ExtResource("1_q662r")
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+offset_right = 860.0
+offset_bottom = 480.0
+color = Color(0.223529, 0.207843, 0.203922, 1)
+
+[node name="Label" type="Label" parent="Node2D/ColorRect"]
+layout_mode = 0
+offset_right = 850.0
+offset_bottom = 480.0
+text = "Verden er tatt over av en AI. Det er opp til en mekaniker å redde den."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Node2D"]
+offset_right = 860.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_p7cog")
+}
