@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/conversation.gd" id="1_6yc11"]
 [ext_resource type="Texture2D" uid="uid://cpjsxy2xcc8dc" path="res://Assets/Player/idle.png" id="1_us7pd"]
 [ext_resource type="Texture2D" uid="uid://d4l2pd8ogd4ls" path="res://Assets/Player/shadow_idle.png" id="2_xyqci"]
-[ext_resource type="AudioStream" uid="uid://d18awmfuurtby" path="res://Assets/Music/Snik Theme.mp3" id="4_75xyt"]
+[ext_resource type="AudioStream" uid="uid://buiun07d2ob2a" path="res://Assets/Music/Conversation Scene.mp3" id="4_xohmy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ag3sd"]
 atlas = ExtResource("1_us7pd")
@@ -207,6 +207,7 @@ offset_right = 860.0
 offset_bottom = 490.0
 
 [node name="ConvoMusic" type="AudioStreamPlayer2D" parent="." groups=["sound"]]
-stream = ExtResource("4_75xyt")
+stream = ExtResource("4_xohmy")
+volume_db = -3.962
 
 [connection signal="pressed" from="Node/Button" to="." method="_on_Button_pressed"]

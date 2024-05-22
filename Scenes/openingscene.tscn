@@ -76,7 +76,9 @@ color = Color(0.223529, 0.207843, 0.203922, 1)
 layout_mode = 0
 offset_right = 850.0
 offset_bottom = 480.0
-text = "Verden er tatt over av en AI. Det er opp til en mekaniker å redde den."
+text = "Verden er overtatt av en AI ute av kontroll, med en armé av roboter. 
+
+Det er opp til en liten mekaniker å redde dagen.."
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -172,7 +172,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxae7"]
-size = Vector2(10, 10)
+size = Vector2(6, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkfyd"]
 size = Vector2(30, 21)
@@ -191,13 +191,14 @@ frame = 1
 frame_progress = 0.388216
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, -5)
+position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_sxae7")
+disabled = true
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(0, -4.5)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_nkfyd")
 
 [node name="ChangeDirectionTimer" type="Timer" parent="."]
@@ -261,6 +262,7 @@ panning_strength = 2.0
 
 [node name="SuspiciousSound" type="AudioStreamPlayer2D" parent="." groups=["sound"]]
 stream = ExtResource("6_qj56x")
+volume_db = -3.962
 
 [node name="ChaseSound" type="AudioStreamPlayer2D" parent="." groups=["sound"]]
 stream = ExtResource("7_6y76i")
