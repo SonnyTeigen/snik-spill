@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dg1vdugkpmqp7"]
+[gd_scene load_steps=25 format=3 uid="uid://dg1vdugkpmqp7"]
 
 [ext_resource type="Script" path="res://Scripts/control.gd" id="1_jv0dw"]
 [ext_resource type="Texture2D" uid="uid://fj5g6322njlu" path="res://Large Buttons/New game Button.png" id="1_w7qkp"]
@@ -16,6 +16,43 @@
 [ext_resource type="Texture2D" uid="uid://lc0kqc70kydp" path="res://Large Buttons/Square Buttons/Next Square Button.png" id="13_o0sxm"]
 [ext_resource type="Texture2D" uid="uid://damau4t4v2ksc" path="res://Large Buttons/Square Buttons/Up Square Button.png" id="14_73u64"]
 [ext_resource type="Texture2D" uid="uid://d1ip1bm0ntmjq" path="res://Large Buttons/Square Buttons/E Button.png" id="16_suk3x"]
+
+[sub_resource type="Animation" id="Animation_ufu1t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.223529, 0.207843, 0.203922, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n5bd0"]
+resource_name = "fade_out"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.223529, 0.207843, 0.203922, 0), Color(0.223529, 0.207843, 0.203922, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8gkb"]
+_data = {
+"RESET": SubResource("Animation_ufu1t"),
+"fade_out": SubResource("Animation_n5bd0")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d3rrq"]
 animations = [{
@@ -122,7 +159,7 @@ icon_alignment = 1
 [node name="Continue" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-icon = ExtResource("2_mwb2m")
+icon = ExtResource("6_gtinb")
 flat = true
 icon_alignment = 1
 
@@ -167,6 +204,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.223529, 0.207843, 0.203922, 1)
+
+[node name="Label" type="Label" parent="Container2"]
+layout_mode = 0
+offset_left = 580.0
+offset_right = 854.0
+offset_bottom = 80.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Container2"]
+layout_mode = 0
+offset_left = 570.0
+offset_right = 854.0
+offset_bottom = 70.0
+color = Color(0.223529, 0.207843, 0.203922, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Container2"]
+libraries = {
+"": SubResource("AnimationLibrary_a8gkb")
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Container2"]
 layout_mode = 1
@@ -391,6 +448,7 @@ flat = true
 icon_alignment = 1
 
 [node name="MenuMusic" type="AudioStreamPlayer2D" parent="." groups=["sound"]]
+process_mode = 3
 stream = ExtResource("9_lmiue")
 
 [connection signal="pressed" from="Container/VBoxContainer/NewGame" to="." method="_on_button_1_pressed"]

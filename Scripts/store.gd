@@ -1,5 +1,9 @@
 extends Node2D
 
+const SAVE_PATH = "res://save_config_file.ini"
+@onready var game_node = get_node("/root/" + Global.save_scene)
+@onready var player_node = get_node("/root/"+ Global.save_scene +"/Player")
+@onready var guard_node = get_tree().get_nodes_in_group(&"guard")
 @onready var global = get_node("/root/Global")  # Få tilgang til global script
 @onready var player = $Player
 @onready var case = $Case
@@ -11,6 +15,12 @@ extends Node2D
 @onready var chase_music = $ChaseMusic
 
 func _ready():
+	$ControlUi/ContainerOptions/VBoxContainer/HSlider.value = Global.sound
+	$ControlUi/ContainerOptions/VBoxContainer/HSlider2.value = Global.enemy_sound
+	if Global.is_from_load == false:
+		pass
+	else:
+		load_placement()
 	if Global.store_convo_played == false:
 		$Conversation.visible = true
 		get_tree().paused = true
@@ -28,23 +38,46 @@ func _ready():
 		guard.connect("chase_state_changed", Callable(self, "_on_chase_state_changed"))
 
 func _process(delta):
-	if Input.is_action_pressed("o"):
-		print(Global.store_convo_played)
+	Global.sound = $ControlUi/ContainerOptions/VBoxContainer/HSlider.value
+	Global.enemy_sound = $ControlUi/ContainerOptions/VBoxContainer/HSlider2.value
 	if get_tree().paused == false:
 		$UILayer.visible = true
 	else: 
 		$UILayer.visible = false
 	change_scenes()
 
+func load_placement():
+	var config := ConfigFile.new()
+	config.load(SAVE_PATH)
+	player_node.position = config.get_value("player", "position")
+	var guards = config.get_value("guards", "guards")
+	var sounds = config.get_value("sounds", "sounds")
+	var enemy_sounds = config.get_value("enemy_sounds", "sounds")
+	var i = 0
+	var Istring
+	for sound in sounds:
+		sound.volume_db = sound.volume
+		$ControlUi/ContainerOptions/VBoxContainer/HSlider.value = sound.volume
+	for sound in enemy_sounds:
+		sound.volume_db = sound.volume
+		$ControlUi/ContainerOptions/VBoxContainer/HSlider2.value = sound.volume
+	for guard in guards:
+		if i <= 3:
+			guard_node[i].position = guard.position
+		else:
+			pass
+		i = i+1
+
+
 func _on_store_exit_point_body_entered(body):
 	if body.has_method("player"):
 		Global.transition_scene = true
-		Global.store_exit_id = 0  # Hovedutgangen
+		Global.scene_exit_id = 0  # Hovedutgangen
 
 func _on_store_roof_exit_point_body_entered(body):
 	if body.has_method("player"):
 		Global.transition_scene = true
-		Global.store_exit_id = 1  # Takutgangen
+		Global.scene_exit_id = 1  # Takutgangen
 
 # Eksempel på funksjon som sjekker om spilleren kan forlate scenen
 func _on_exit_body_entered(body):

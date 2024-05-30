@@ -3407,11 +3407,11 @@ process_mode = 3
 visible = false
 z_index = 99
 
-[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="." groups=["sound"]]
 process_mode = 1
 stream = ExtResource("8_kksvo")
 
-[node name="ChaseMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="ChaseMusic" type="AudioStreamPlayer2D" parent="." groups=["sound"]]
 stream = ExtResource("9_fu3iw")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -3445,16 +3445,6 @@ position = Vector2(47, 410)
 patrol_path = NodePath("../Path2D")
 player = NodePath("../Player")
 
-[node name="Guard2" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("5_31qpb")]
-position = Vector2(82, 54)
-patrol_path = NodePath("../Path2D2")
-player = NodePath("../Player")
-
-[node name="Guard3" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("5_31qpb")]
-position = Vector2(639, 229)
-patrol_path = NodePath("../Path2D3")
-player = NodePath("../Player")
-
 [node name="Path2D2" type="Path2D" parent="."]
 curve = SubResource("Curve2D_73tf7")
 
@@ -3462,12 +3452,22 @@ curve = SubResource("Curve2D_73tf7")
 position = Vector2(115, 61)
 rotation = 0.0157467
 
+[node name="Guard2" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("5_31qpb")]
+position = Vector2(82, 54)
+patrol_path = NodePath("../Path2D2")
+player = NodePath("../Player")
+
 [node name="Path2D3" type="Path2D" parent="."]
 curve = SubResource("Curve2D_pudro")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
 position = Vector2(615, 314)
 rotation = 3.11767
+
+[node name="Guard3" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("5_31qpb")]
+position = Vector2(639, 229)
+patrol_path = NodePath("../Path2D3")
+player = NodePath("../Player")
 
 [connection signal="body_entered" from="StoreExitPoint" to="." method="_on_store_exit_point_body_entered"]
 [connection signal="body_exited" from="StoreExitPoint" to="." method="_on_store_exit_point_body_exited"]

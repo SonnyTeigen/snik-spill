@@ -203,7 +203,7 @@ height = 18.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2pce"]
 size = Vector2(24, 26.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
 script = ExtResource("1_hkfwc")
 

@@ -7,8 +7,8 @@ var transition_to_jai_scene = false
 
 var player_exit_store_posx = 85
 var player_exit_store_posy = 312
-var player_exit_jail_posx = 502
-var player_exit_jail_posy = 207
+var player_exit_jail_posx = 2409
+var player_exit_jail_posy = 219
 var player_exit_roof_posx = 370
 var player_exit_roof_posy = 120
 var player_start_posx = 2567
@@ -16,13 +16,16 @@ var player_start_posy = 261
 var player_start_jail_posx = 420
 var player_start_jail_posy = 330
 
+var sound
+var enemy_sound
 
-var store_exit_id = 0
+var scene_exit_id = 0
 
 
 # Variabel for å holde styr på koffertstatus
 var has_case = false
 
+var is_from_load = false
 var jail_puzzle_solved = false
 var game_first_loading = true
 var menu_open = true

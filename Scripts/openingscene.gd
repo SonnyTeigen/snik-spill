@@ -6,10 +6,10 @@ extends Node2D
 func _ready():
 	play_intro()
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("esc"):
 		$Node2D.visible = false
-		controlui.visible = true
+		controlui.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func play_intro():
 	if Global.intro_played == false:
@@ -19,7 +19,7 @@ func play_intro():
 		$Node2D/AnimationPlayer.play("fade_out")
 		await get_tree().create_timer(3).timeout
 		$Node2D.visible = false
-		controlui.visible = true
+		controlui.process_mode = Node.PROCESS_MODE_ALWAYS
 		Global.intro_played = true
 	else:
 		$Node2D.visible = false

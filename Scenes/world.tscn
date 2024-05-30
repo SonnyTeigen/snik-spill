@@ -3900,12 +3900,6 @@ sources/1 = SubResource("TileSetAtlasSource_5wr7o")
 sources/3 = SubResource("TileSetAtlasSource_qg61v")
 sources/2 = SubResource("TileSetAtlasSource_awits")
 
-[sub_resource type="Curve2D" id="Curve2D_qj6ie"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 204.2, 317.119, 0, 0, 0, 0, 607.866, 317.119, 0, 0, 0, 0, 610.683, 25.0336, 0, 0, 0, 0, 676.393, 23.0261, 0, 0, 0, 0, 677.332, 317.119, 0, 0, 0, 0, 677.332, 395.41, 0, 0, 0, 0, 471.745, 395.41, 0, 0, 0, 0, 199.505, 398.421, 0, 0, 0, 0, 204.2, 317.119)
-}
-point_count = 9
-
 [sub_resource type="TileSet" id="TileSet_dqdja"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c6kn"]
@@ -3917,11 +3911,23 @@ size = Vector2(3604, 225)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i73yh"]
 size = Vector2(52, 24)
 
+[sub_resource type="Curve2D" id="Curve2D_ful2w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 442, 6, 0, 0, 0, 0, 441, -287, 0, 0, 0, 0, 562, -286, 0, 0, 0, 0, 560, 70.0001, 0, 0, 0, 0, 2, 72.0001, 0, 0, 0, 0, 0, -1)
+}
+point_count = 7
+
 [sub_resource type="Curve2D" id="Curve2D_wr0la"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 889, 308, 0, 0, 0, 0, 1016, 315, 0, 0, 0, 0, 1218, 316, 0, 0, 0, 0, 1466, 314, 0, 0, 0, 0, 1529, 235, 0, 0, 0, 0, 1595, 163, 0, 0, 0, 0, 1593, 18, 0, 0, 0, 0, 1322, 12, 0, 0, 0, 0, 1045, 23, 0, 0, 0, 0, 748, 20, 0, 0, 0, 0, 709, 21, 0, 0, 0, 0, 714, 302, 0, 0, 0, 0, 889, 308)
+"points": PackedVector2Array(0, 0, 0, 0, 889, 308, 0, 0, 0, 0, 1016, 315, 0, 0, 0, 0, 1218, 316, 0, 0, 0, 0, 1466, 314, 0, 0, 0, 0, 1529, 235, 0, 0, 0, 0, 1531.59, 141.405, 0, 0, 0, 0, 1593.31, 136.27, 0, 0, 0, 0, 1593, 18, 0, 0, 0, 0, 1322, 12, 0, 0, 0, 0, 1045, 23, 0, 0, 0, 0, 748, 20, 0, 0, 0, 0, 709, 21, 0, 0, 0, 0, 714, 302, 0, 0, 0, 0, 889, 308)
 }
-point_count = 13
+point_count = 14
+
+[sub_resource type="Curve2D" id="Curve2D_pt4st"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 215, 70, 0, 0, 0, 0, 211, 121, 0, 0, 0, 0, 211, 181, 0, 0, 0, 0, 300, 201, 0, 0, 0, 0, 400, 194, 0, 0, 0, 0, 507, 161, 0, 0, 0, 0, 504, 120, 0, 0, 0, 0, 384, 122, 0, 0, 0, 0, 294, 116, 0, 0, 0, 0, 299, 57, 0, 0, 0, 0, 252, 55, 0, 0, 0, 0, 215, 70)
+}
+point_count = 12
 
 [sub_resource type="Curve2D" id="Curve2D_kuw46"]
 _data = {
@@ -3935,12 +3941,6 @@ _data = {
 }
 point_count = 9
 
-[sub_resource type="Curve2D" id="Curve2D_pt4st"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 215, 70, 0, 0, 0, 0, 211, 121, 0, 0, 0, 0, 211, 181, 0, 0, 0, 0, 300, 201, 0, 0, 0, 0, 400, 194, 0, 0, 0, 0, 507, 161, 0, 0, 0, 0, 504, 120, 0, 0, 0, 0, 384, 122, 0, 0, 0, 0, 294, 116, 0, 0, 0, 0, 299, 57, 0, 0, 0, 0, 252, 55, 0, 0, 0, 0, 215, 70)
-}
-point_count = 12
-
 [node name="World" type="Node2D"]
 modulate = Color(0.760784, 0.760784, 0.760784, 1)
 y_sort_enabled = true
@@ -3951,7 +3951,7 @@ process_mode = 3
 z_index = 700
 
 [node name="ControlUi" parent="." instance=ExtResource("3_bpig6")]
-visible = false
+process_mode = 1
 z_index = 40
 anchors_preset = -1
 offset_right = 854.0
@@ -4001,15 +4001,6 @@ offset_top = 46.0
 offset_right = 732.0
 offset_bottom = 75.0
 text = "Finn kofferten og gå videre!"
-
-[node name="Path2D" type="Path2D" parent="."]
-position = Vector2(-72.5212, 1.05948)
-scale = Vector2(1.06524, 0.996283)
-curve = SubResource("Curve2D_qj6ie")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(204.2, 317.119)
-cubic_interp = false
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_dqdja")
@@ -4061,22 +4052,20 @@ position = Vector2(2568, 302)
 y_sort_enabled = true
 position = Vector2(2567, 261)
 
-[node name="Guard" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
+[node name="Path2D" type="Path2D" parent="." groups=["path"]]
+position = Vector2(146, 320)
+scale = Vector2(1, 0.999999)
+curve = SubResource("Curve2D_ful2w")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, -1)
+rotation = 0.0158358
+
+[node name="Guard1" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
 y_sort_enabled = true
 position = Vector2(146, 320)
 scale = Vector2(1, 0.999999)
 patrol_path = NodePath("../Path2D")
-player = NodePath("../Player")
-
-[node name="Guard2" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
-position = Vector2(1047, 313)
-wall_min_slide_angle = 0.0
-patrol_path = NodePath("../Path2D2")
-player = NodePath("../Player")
-
-[node name="Guard3" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
-position = Vector2(208, 191)
-patrol_path = NodePath("../Path2D5")
 player = NodePath("../Player")
 
 [node name="Path2D2" type="Path2D" parent="."]
@@ -4088,47 +4077,53 @@ position = Vector2(889, 308)
 rotation = 0.0550624
 cubic_interp = false
 
-[node name="Case" parent="." instance=ExtResource("15_bq10x")]
-position = Vector2(149, 122)
-
-[node name="Path2D3" type="Path2D" parent="."]
-curve = SubResource("Curve2D_kuw46")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
-position = Vector2(1928, 359)
-rotation = -0.226799
-
-[node name="Path2D4" type="Path2D" parent="."]
-curve = SubResource("Curve2D_8lma3")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D4"]
-position = Vector2(2004, 24)
-rotation = -0.0131571
-
-[node name="Path2D5" type="Path2D" parent="."]
-curve = SubResource("Curve2D_pt4st")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D5"]
-position = Vector2(215, 70)
-rotation = 1.64907
-
-[node name="Guard4" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
-position = Vector2(578, 154)
+[node name="Guard2" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
+position = Vector2(1047, 313)
+wall_min_slide_angle = 0.0
 patrol_path = NodePath("../Path2D2")
 player = NodePath("../Player")
 
-[node name="Guard5" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
-position = Vector2(1853, 372)
+[node name="Path2D3" type="Path2D" parent="." groups=["path"]]
+curve = SubResource("Curve2D_pt4st")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
+position = Vector2(215, 70)
+rotation = 1.64907
+
+[node name="Guard3" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
+position = Vector2(208, 191)
 patrol_path = NodePath("../Path2D3")
 player = NodePath("../Player")
 
-[node name="Guard6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("14_mq45h")]
-position = Vector2(1619, 142)
+[node name="Case" parent="." instance=ExtResource("15_bq10x")]
+position = Vector2(149, 122)
+
+[node name="Path2D5" type="Path2D" parent="."]
+curve = SubResource("Curve2D_kuw46")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D5"]
+position = Vector2(1928, 359)
+rotation = -0.226799
+
+[node name="Guard5" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
+position = Vector2(1853, 372)
+patrol_path = NodePath("../Path2D5")
 player = NodePath("../Player")
 
-[node name="Guard7" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
+[node name="Path2D6" type="Path2D" parent="."]
+curve = SubResource("Curve2D_8lma3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D6"]
+position = Vector2(2004, 24)
+rotation = -0.0131571
+
+[node name="Guard6" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("14_mq45h")]
 position = Vector2(1983, 30)
-patrol_path = NodePath("../Path2D4")
+patrol_path = NodePath("../Path2D6")
+player = NodePath("../Player")
+
+[node name="Guard7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("14_mq45h")]
+position = Vector2(1619, 142)
 player = NodePath("../Player")
 
 [connection signal="body_entered" from="StoreTransitionPoint" to="." method="_on_store_transition_point_body_entered"]

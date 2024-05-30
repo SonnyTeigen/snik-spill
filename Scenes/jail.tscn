@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnrixbeqbvp83"]
+[gd_scene load_steps=14 format=3 uid="uid://cnrixbeqbvp83"]
 
 [ext_resource type="Script" path="res://Scripts/jail.gd" id="1_d85d7"]
 [ext_resource type="TileSet" uid="uid://bmnspoeq37ns4" path="res://Assets/Tilemap/tilemaps.tres" id="2_5clhw"]
@@ -11,9 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://vh8kkixt11e7" path="res://Assets/Music/Chase1.mp3" id="9_6yqib"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jy88o"]
-vertices = PackedVector2Array(840, 460, 20, 460, 20, 30, 840, 30)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(10, 20, 850, 20, 850, 470, 10, 470)])
+vertices = PackedVector2Array(840, 30, 840, 460, 550, 460, 550, 190, 20, 30, 300, 190, 20, 460, 300, 340, 360, 340, 360, 250, 490, 250, 490, 380, 360, 380, 360, 350, 300, 350, 300, 460)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(11, 12, 13), PackedInt32Array(8, 11, 13), PackedInt32Array(7, 8, 13, 14), PackedInt32Array(6, 7, 14), PackedInt32Array(6, 14, 15)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(10, 20, 850, 20, 850, 470, 10, 470), PackedVector2Array(310, 200, 310, 330, 350, 330, 350, 240, 500, 240, 500, 390, 430, 390, 350, 390, 350, 360, 310, 360, 310, 460, 540, 460, 540, 200)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lpfc7"]
@@ -21,6 +21,12 @@ size = Vector2(30, 160)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_td7st"]
 size = Vector2(48, 60)
+
+[sub_resource type="Curve2D" id="Curve2D_hkkuu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 414, 0, 0, 0, 0, 0, 414, 280, 0, 0, 0, 0, 604, 280, 0, 0, 0, 0, 604, -40, 0, 0, 0, 0, -6, -40, 0, 0, 0, 0, 4, 0)
+}
+point_count = 7
 
 [node name="Jail" type="Node2D"]
 process_mode = 3
@@ -88,9 +94,16 @@ shape = SubResource("RectangleShape2D_lpfc7")
 position = Vector2(346, 330)
 shape = SubResource("RectangleShape2D_td7st")
 
-[node name="Guard" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_a1i7w")]
-process_mode = 1
-position = Vector2(520, 110)
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(166, 120)
+curve = SubResource("Curve2D_hkkuu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(4, 0)
+
+[node name="Guard" parent="." node_paths=PackedStringArray("patrol_path", "player") instance=ExtResource("4_a1i7w")]
+position = Vector2(166, 120)
+patrol_path = NodePath("../Path2D")
 player = NodePath("../Player")
 
 [node name="ControlUi" parent="." instance=ExtResource("5_qab2d")]

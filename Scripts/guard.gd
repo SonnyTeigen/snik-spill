@@ -2,8 +2,9 @@ extends CharacterBody2D
 #Dette er siste versjon!
 # Eksporterer en variabel for å holde en referanse til en Path2D-node
 @export var patrol_path: Path2D
-@export var player: Node2D
+@export var player: Node2D 
 
+@onready var player_node = get_tree().get_first_node_in_group(&"player")
 @onready var inner_vision_cone = $InnerVisionCone
 @onready var outer_vision_cone = $OuterVisionCone
 @onready var agent: NavigationAgent2D = $NavigationAgent2D
@@ -77,6 +78,7 @@ func _ready():
 	agent = get_node("NavigationAgent2D")
 	agent.max_speed = chase_speed
 	add_to_group("guards")
+	player = player_node
 	player_ref = get_node("/root/"+ Global.save_scene+"/Player")
 	
 	if patrol_path:
@@ -165,7 +167,7 @@ func _physics_process(delta: float) -> void:
 	update_animations_and_sounds()
 	update_outer_vision_cone()
 
-func _process(delta):
+func _process(_delta):
 	player_to_jail()
 
 func player_to_jail():
@@ -183,7 +185,7 @@ func stop_footstep_sound():
 		$FootstepSound.stop()
 
 # Patruljeringslogikk
-func patrol_free(delta):
+func patrol_free(_delta):
 	if free_patrol_direction.length() == 0 or randf() < 0.01 or patrol_free_pause_timer.is_stopped() or agent.velocity.length() < 0.1:
 		# Bestem en ny retning når agenten nesten har stoppet
 		direction_change_count += 1
@@ -208,7 +210,7 @@ func follow_path(delta):
 		agent.velocity = velocity
 		
 
-func chase_player(delta: float):
+func chase_player(_delta: float):
 	agent.set_target_position(player.global_position)
 	agent.max_speed = chase_speed
 	agent.velocity = player.global_position - global_position
@@ -342,7 +344,7 @@ func perform_look_around():
 		change_state(States.PATROL_FREE)
 		print("Look around complete. Returning to patrol.")
 
-func perform_blind_chase(delta):
+func perform_blind_chase(_delta):
 	if randf() < 0.05:
 		var random_direction = Vector2(randf() - 0.5, randf() - 0.5).normalized()
 		var random_position = global_position + random_direction * 100  # Doblet rekkevidde til 100
@@ -400,9 +402,9 @@ func return_to_original_path():
 
 func reset_vision_directions():
 	if agent.velocity.length() > 0:
-		var new_direction = agent.velocity.normalized()
+		var _new_direction = agent.velocity.normalized()
 	else:
-		var new_direction = Vector2.RIGHT
+		var _new_direction = Vector2.RIGHT
 	update_vision()
 
 func update_vision():

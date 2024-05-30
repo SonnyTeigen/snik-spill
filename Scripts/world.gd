@@ -4,6 +4,9 @@ extends Node2D
 @onready var player = $Player
 @onready var exit = $Exit
 @onready var case = $Case
+@onready var game_node = get_node("/root/" + Global.save_scene)
+@onready var player_node = get_node("/root/"+ Global.save_scene +"/Player")
+@onready var guard_node = get_tree().get_nodes_in_group(&"guard")
 
 @onready var ui_label = $UILayer/Control/Label
 @onready var message_timer = $UILayer/MessageTimer
@@ -12,7 +15,7 @@ extends Node2D
 @onready var chase_music = $ChaseMusic
 
 @onready var global = get_node("/root/Global")  # Få tilgang til global script
-
+const SAVE_PATH = "res://save_config_file.ini"
 var has_case = false
 
 func _ready():
@@ -21,14 +24,18 @@ func _ready():
 		$Player.position.x = Global.player_start_posx
 		$Player.position.y = Global.player_start_posy
 	else:
-		match Global.store_exit_id:
+		$ControlUi/ContainerOptions/VBoxContainer/HSlider.value = Global.sound
+		$ControlUi/ContainerOptions/VBoxContainer/HSlider2.value = Global.enemy_sound
+		match Global.scene_exit_id:
 			0:
 				$Player.position.x = Global.player_exit_store_posx
 				$Player.position.y = Global.player_exit_store_posy
 			1:
 				$Player.position.x = Global.player_exit_roof_posx
 				$Player.position.y = Global.player_exit_roof_posy
-		
+			2:
+				$Player.position.x = Global.player_exit_jail_posx
+				$Player.position.y = Global.player_exit_jail_posy
 	for guard in get_tree().get_nodes_in_group("guards"):
 		guard.connect("guard_alerted", Callable(self, "_on_guard_alerted"))
 		guard.connect("guard_down", Callable(self, "_on_guard_down"))
@@ -41,14 +48,38 @@ func _ready():
 	if Global.menu_open == true:
 		get_tree().paused = true
 	background_music.play()  # Start bakgrunnsmusikken når spillet lastes
+	if Global.is_from_load == true: 
+		load_placement()
+		$ControlUi.process_mode = Node.PROCESS_MODE_ALWAYS
 
-func _process(delta):
-	if Input.is_action_pressed("o"):
-		print(Global.store_convo_played)
+func _process(_delta):
+	Global.sound = $ControlUi/ContainerOptions/VBoxContainer/HSlider.value
+	Global.enemy_sound = $ControlUi/ContainerOptions/VBoxContainer/HSlider2.value
 	change_scene()
 	message_visible()
 
-# Funksjon for å plukke opp koffert og fjerne sprite.
+func load_placement():
+	var config := ConfigFile.new()
+	config.load(SAVE_PATH)
+	player_node.position = config.get_value("player", "position")
+	var guards = config.get_value("guards", "guards")
+	var sounds = config.get_value("sounds", "sounds")
+	var enemy_sounds = config.get_value("enemy_sounds", "sounds")
+	var i = 0
+	var Istring
+	for sound in sounds:
+		sound.volume_db = sound.volume
+		$ControlUi/ContainerOptions/VBoxContainer/HSlider.value = sound.volume
+	for sound in enemy_sounds:
+		sound.volume_db = sound.volume
+		$ControlUi/ContainerOptions/VBoxContainer/HSlider2.value = sound.volume
+	for guard in guards:
+		if i <= 6:
+			guard_node[i].position = guard.position
+		else:
+			pass
+		i = i+1
+
 
 # Funksjon for å gå ut gjennom global utgangsdør
 func _on_exit_body_entered(body):
@@ -60,10 +91,6 @@ func _on_guard_alerted(location):
 	for guard in get_tree().get_nodes_in_group("guards"):
 		if guard.global_position.distance_to(location) <= guard.alert_radius:
 			guard.change_state(guard.States.CHASE)
-
-func _on_guard_down(location):
-	# Implementer logikk som tilsvarer når en vakt er "down"
-	pass
 
 func message_visible():
 	if $ControlUi/Container.visible == false && Global.menu_open == true:

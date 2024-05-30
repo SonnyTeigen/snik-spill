@@ -18,7 +18,7 @@ func _physics_process(delta):
 func player():
 	pass
 
-func player_movement(delta):
+func player_movement(_delta):
 	movement_velocity = Vector2.ZERO  # Resetter hastighetsvektoren
 
 	# Håndter input
